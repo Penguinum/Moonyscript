@@ -33,7 +33,6 @@ moon_libs=`find moonscript | sed -e 's/\//./g' | grep .lua | sed -e 's/.lua//g'`
 moon_source=`lua ../amalg.lua $moon_libs`
 
 cd ..
-lulpeg_source=`lua amalg.lua lulpeg | sed -e 's/lulpeg/lpeg/g'`
 
 lfs_cheat="
 -- Fake lfs
@@ -49,6 +48,7 @@ return {
 
 echo "$moon_source" > moonyscript.lua
 if $use_lulpeg ; then
+  lulpeg_source=`lua amalg.lua lulpeg | sed -e 's/lulpeg/lpeg/g'`
   echo "$lulpeg_source" >> moonyscript.lua
 fi
 if $fake_lfs ; then
